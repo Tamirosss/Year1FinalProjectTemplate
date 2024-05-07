@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Net;
 using Microsoft.EntityFrameworkCore;
+using UUIDNext;
 using static Project.Utils;
 
 namespace Project;
@@ -74,10 +75,51 @@ class Program
     var response = serverContext.Response;
 
     string absPath = request.Url!.AbsolutePath;
+    if (absPath == "/signUp")
+    {
+      (string username, string password) = request.GetBody<(string, string)>();
+
+      var userId = Uuid.NewDatabaseFriendly(Database.SQLite).ToString();
+
+      var user = new User(userId, username, password);
+      databaseContext.Users.Add(user);
+
+      response.Write(userId);
+    }
+
+    else if (absPath == "/autoLogIn")
+    {
+      string userId = request.GetBody<string>();
+
+      User user = databaseContext.Users.Find(userId)!;
+
+      response.Write(new { username = user.Username });
+    }
+
+    else if (absPath == "/logIn")
+    {
+      (string username, string password) = request.GetBody<(string, string)>();
+
+      User user = databaseContext.Users.First(
+        u => u.Username == username && u.Password == password
+      )!;
+
+      response.Write(user.Id);
+    }
+
   }
 }
 
 class DatabaseContext : DbContextWrapper
 {
+  public DbSet<User> Users { get; set; }
+ 
   public DatabaseContext() : base("Database") { }
 }
+ class User(string id, string username, string password)
+  {
+    [Key]
+    public string Id { get; set; } = id;
+    public string Username { get; set; } = username;
+    public string Password { get; set; } = password;
+  }

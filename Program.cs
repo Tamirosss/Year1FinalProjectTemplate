@@ -107,19 +107,34 @@ class Program
       response.Write(user.Id);
     }
 
+    else if (absPath == "/appoi")
+    {
+      int day = request.GetBody<int>();
+    }
+
   }
 }
 
 class DatabaseContext : DbContextWrapper
 {
   public DbSet<User> Users { get; set; }
- 
+  public DbSet<Date> Dates { get; set; }
+
   public DatabaseContext() : base("Database") { }
 }
- class User(string id, string username, string password)
-  {
-    [Key]
-    public string Id { get; set; } = id;
-    public string Username { get; set; } = username;
-    public string Password { get; set; } = password;
-  }
+
+
+class User(string id, string username, string password)
+{
+  [Key]
+  public string Id { get; set; } = id;
+  public string Username { get; set; } = username;
+  public string Password { get; set; } = password;
+}
+
+class Date(int day)
+{
+  [Key]
+  public int Day { get; set; } = day;
+  public string Id { get; set; } = "";
+}

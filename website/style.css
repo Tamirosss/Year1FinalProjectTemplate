@@ -19,8 +19,8 @@
   }
 .in{
     position: relative;
-    left:+570px;
-}
-.yesno{
-    
+    margin-left: 1750px;
+    background-color: azure;
+    color: black;
+    font-weight: bold;
 }

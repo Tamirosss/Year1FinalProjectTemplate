@@ -107,10 +107,18 @@ class Program
       response.Write(user.Id);
     }
 
-    else if (absPath == "/appoi")
+    else if (absPath == "/setAppoitment")
     {
       int day = request.GetBody<int>();
+
+      Date date = databaseContext.Dates.Find(day)!;
+
+      date.UserId = 
+
+      response.Write(user.Username);
+
     }
+  
 
   }
 }
@@ -136,5 +144,5 @@ class Date(int day)
 {
   [Key]
   public int Day { get; set; } = day;
-  public string Id { get; set; } = "";
+  public string UserId { get; set; } = "";
 }

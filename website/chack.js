@@ -5,7 +5,10 @@ let yesButton = document.getElementById("yesButton");
 let query = getQuery();
 
 yesButton.onclick = function() {
-    send("/appoi", parseInt(query.day));
+    send("/setAppoitment", {
+        day: parseInt(query.day),
+        userId: 
+    });
 };
 
 

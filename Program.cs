@@ -109,15 +109,20 @@ class Program
 
     else if (absPath == "/setAppoitment")
     {
-      int day = request.GetBody<int>();
+      (int day, string userId) = request.GetBody<(int, string)>();
 
       Date date = databaseContext.Dates.Find(day)!;
 
-      date.UserId = 
-
-      response.Write(user.Username);
-
+      date.UserId = userId;
     }
+     else if (absPath == "/Mark"){
+      (int day, string userId) = request.GetBody<(int, string)>();
+
+      Date date = databaseContext.Dates.Find(day)!;
+
+      date.UserId = userId;
+      response.Write(userId);
+     }
   
 
   }

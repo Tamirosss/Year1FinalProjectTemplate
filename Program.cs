@@ -21,15 +21,27 @@ class Program
     Console.WriteLine("Server started. Listening for requests...");
     Console.WriteLine("Main page on http://localhost:5000/website/index.html");
 
+    /*─────────────────────────────────────╮
+    │ Creating the database context object │
+    ╰─────────────────────────────────────*/
+    var databaseContext = new DatabaseContext();
+
+    for (int i = 1; i < 28; i++)
+    {
+      if (databaseContext.Dates.FirstOrDefault(date => date.Day == i) == null)
+      {
+        databaseContext.Dates.Add(new Date(i));
+      }
+    }
+
+    databaseContext.SaveChanges();
+
     /*─────────────────────────╮
     │ Processing HTTP requests │
     ╰─────────────────────────*/
     while (true)
     {
-      /*─────────────────────────────────────╮
-      │ Creating the database context object │
-      ╰─────────────────────────────────────*/
-      var databaseContext = new DatabaseContext();
+
 
       /*────────────────────────────╮
       │ Waiting for an HTTP request │
@@ -115,15 +127,16 @@ class Program
 
       date.UserId = userId;
     }
-     else if (absPath == "/Mark"){
+    else if (absPath == "/Mark")
+    {
       (int day, string userId) = request.GetBody<(int, string)>();
 
       Date date = databaseContext.Dates.Find(day)!;
 
       date.UserId = userId;
       response.Write(userId);
-     }
-  
+    }
+
 
   }
 }

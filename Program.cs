@@ -136,6 +136,10 @@ class Program
       date.UserId = userId;
       response.Write(userId);
     }
+    else if(absPath=="/getAppoitment"){
+      var perviews=databaseContext.Dates().ToArray();
+      response.Write(perviews);
+    }
 
 
   }

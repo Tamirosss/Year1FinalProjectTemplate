@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Net;
 using Microsoft.EntityFrameworkCore;
 using UUIDNext;
@@ -91,7 +90,10 @@ class Program
     {
       (string username, string password) = request.GetBody<(string, string)>();
 
-      var userId = Uuid.NewDatabaseFriendly(Database.SQLite).ToString();
+      var userId = Uuid.NewDatabaseFriendly(UUIDNext.Database.SQLite).ToString();
+      Console.WriteLine(username);
+      Console.WriteLine(password);
+      Console.WriteLine(userId);
 
       var user = new User(userId, username, password);
       databaseContext.Users.Add(user);
@@ -137,7 +139,7 @@ class Program
       response.Write(userId);
     }
     else if(absPath=="/getAppoitment"){
-      var perviews=databaseContext.Dates().ToArray();
+      var perviews=databaseContext.Dates.ToArray();
       response.Write(perviews);
     }
 

@@ -1,3 +1,5 @@
+import { send } from "./_utils";
+
 /**@type {HTMLTitleElement} */
 let previewsContainer= document.getElementById("previewsContainer");
 
@@ -8,11 +10,14 @@ let previewsContainer= document.getElementById("previewsContainer");
  */
 
 /**@type {Preview[]} */
-let previews=await send("/getAppoitment");
-
+let previews = await send("/getAppoitment");
+console.log(previews);
 for(let i=0;i<previews.length;i++){
-    let previewA=createPreviewA(previews[i]);
-    previewsContainer.appendChild(previewA)
+    if (previews[i].id!=''){
+        let button = document.getElementByid(i.toString());
+        button.style.backgroundColor = "red";
+
+    }
 }
 
 /**

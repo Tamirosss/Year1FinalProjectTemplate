@@ -1,12 +1,12 @@
 import { getQuery, send } from "./_utils";
 import Cookies from "./_cookies";
 
-let yesButton = document.getElementById("yesButton");
+let yescancel = document.getElementById("yescancel");
 
 let query = getQuery();
 
-yesButton.onclick = function() {
-    send("/setAppoitment", {
+yescancel.onclick = function() {
+    send("/cancelAppoitment", {
         day: parseInt(query.day),
         userId: Cookies.get("id")
     });

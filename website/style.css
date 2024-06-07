@@ -19,12 +19,12 @@
   }
 .in{
     position: relative;
-    margin-left: 1750px;
-    background-color: azure;
+    margin-left: 40px;
     color: black;
     font-weight: bold;
+    margin-top: -50px;
 }
 
 body{
-    background-color: rgb(180, 140, 155);
+    background-color: rgb(131, 145, 165);
 }

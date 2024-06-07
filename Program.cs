@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Data.Common;
 using System.Net;
 using Microsoft.EntityFrameworkCore;
 using UUIDNext;
@@ -129,18 +130,19 @@ class Program
 
       date.UserId = userId;
     }
-    else if (absPath == "/Mark")
+
+
+    else if (absPath == "/getAppoitment")
+    {
+      var perviews = databaseContext.Dates.ToArray();
+      response.Write(perviews);
+    }
+    else if (absPath == "/cancelAppoitment")
     {
       (int day, string userId) = request.GetBody<(int, string)>();
-
+      Console.WriteLine(day);
       Date date = databaseContext.Dates.Find(day)!;
-
-      date.UserId = userId;
-      response.Write(userId);
-    }
-    else if(absPath=="/getAppoitment"){
-      var perviews=databaseContext.Dates.ToArray();
-      response.Write(perviews);
+      date.UserId = "";
     }
 
 

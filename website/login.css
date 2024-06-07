@@ -9,10 +9,12 @@
 
 body {
     margin: 0;
+    background-color: #DEB887;
 }
 
 #passwordInput {
     -webkit-text-security: disc;
+    margin-top: auto;
 }
 
 #messageDiv {
@@ -23,4 +25,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+   
+
+    
 }
+ 

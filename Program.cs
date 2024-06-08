@@ -121,7 +121,13 @@ class Program
 
       response.Write(user.Id);
     }
+    else if (absPath == "/logout")
+    {
+      string userId = request.GetBody<string>();
+      User user = databaseContext.Users.Find(userId)!;
 
+      response.Write(userId);
+    }
     else if (absPath == "/setAppoitment")
     {
       (int day, string userId) = request.GetBody<(int, string)>();

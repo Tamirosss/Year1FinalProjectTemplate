@@ -4,8 +4,8 @@ import { send } from "./_utils";
 let out = document.getElementById("out");
 
 out.onclick = async function () {
-    let id = await send("/logout");
-    Cookies.remove("id", id);
-    console.log(id);
+    Cookies.remove("id");
+    top.location.href = "index.html";
+
 }
 

@@ -13,7 +13,9 @@ let previewsContainer = document.getElementById("previewsContainer");
 /**@type {Preview[]} */
 let previews = await send("/getAppoitment");
 console.log(previews);
-
+let logout = document.getElementById("out");
+let sigh=document.getElementById("sign");
+let log=document.getElementById("log");
 
 for (let i = 0; i < previews.length; i++) {
     let button = document.getElementById((i + 1).toString());
@@ -34,13 +36,16 @@ for (let i = 0; i < previews.length; i++) {
 
     }
      else if (Cookies.get("id") == undefined) {
-
+        logout.style.display='none'
          button.onclick = function () {
              alert("you neet to login");
          }
 
      }
     else {
+         sigh.style.display = 'none'
+         log.style.display = 'none'
+
         button.onclick = function () {
             window.location.href = "chack.html?day=" + (i + 1);
         }

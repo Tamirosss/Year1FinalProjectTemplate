@@ -133,9 +133,7 @@ class Program
     else if (absPath == "/getUsername")
     {
       string userId = request.GetBody<string>();
-
       User user = databaseContext.Users.Find(userId)!;
-
       response.Write(user.Username);
     }
 
@@ -151,6 +149,7 @@ class Program
       Date date = databaseContext.Dates.Find(day)!;
       date.UserId = "";
     }
+
 
 
   }

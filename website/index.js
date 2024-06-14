@@ -13,15 +13,20 @@ let previewsContainer = document.getElementById("previewsContainer");
 /**@type {Preview[]} */
 let previews = await send("/getAppoitment");
 console.log(previews);
+let id = Cookies.get("id");
+let user = await send("/getUsername", id);
 let logout = document.getElementById("out");
-let sigh=document.getElementById("sign");
-let log=document.getElementById("log");
+let sigh = document.getElementById("sign");
+let log = document.getElementById("log");
+let rr=document.getElementById("rr");
+rr.innerText="welcome "+user+"!!!!";
+
 
 for (let i = 0; i < previews.length; i++) {
     let button = document.getElementById((i + 1).toString());
 
 
-     if (previews[i].UserId == Cookies.get("id")) {
+    if (previews[i].UserId == Cookies.get("id")) {
         let button = document.getElementById((i + 1).toString());
         button.style.backgroundColor = "green";
         button.onclick = function () {
@@ -35,16 +40,17 @@ for (let i = 0; i < previews.length; i++) {
         }
 
     }
-     else if (Cookies.get("id") == undefined) {
-        logout.style.display='none'
-         button.onclick = function () {
-             alert("you neet to login");
-         }
+    else if (Cookies.get("id") == undefined) {
+        logout.style.display = 'none'
+        rr.style.display='none'
+        button.onclick = function () {
+            alert("you neet to login");
+        }
 
-     }
+    }
     else {
-         sigh.style.display = 'none'
-         log.style.display = 'none'
+        sigh.style.display = 'none'
+        log.style.display = 'none'
 
         button.onclick = function () {
             window.location.href = "chack.html?day=" + (i + 1);

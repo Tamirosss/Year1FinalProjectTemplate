@@ -18,8 +18,8 @@ let user = await send("/getUsername", id);
 let logout = document.getElementById("out");
 let sigh = document.getElementById("sign");
 let log = document.getElementById("log");
-let rr=document.getElementById("rr");
-rr.innerText="welcome "+user+"!!!!";
+let welcome=document.getElementById("welcome");
+welcome.innerText="welcome "+user+"!!!!";
 
 
 for (let i = 0; i < previews.length; i++) {
@@ -42,7 +42,7 @@ for (let i = 0; i < previews.length; i++) {
     }
     else if (Cookies.get("id") == undefined) {
         logout.style.display = 'none'
-        rr.style.display='none'
+        welcome.style.display='none'
         button.onclick = function () {
             alert("you neet to login");
         }

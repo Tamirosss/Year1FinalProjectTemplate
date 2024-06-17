@@ -26,7 +26,7 @@ class Program
     ╰─────────────────────────────────────*/
     var databaseContext = new DatabaseContext();
 
-    for (int i = 1; i < 28; i++)
+    for (int i = 1; i < 29; i++)
     {
       if (databaseContext.Dates.FirstOrDefault(date => date.Day == i) == null)
       {
